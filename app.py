@@ -3,9 +3,9 @@ import requests
 
 # Dictionary of actors and their corresponding video URLs
 ACTOR_VIDEOS = {
-    "Original": "opp.mp4",
-    "Actor 1": "download.mp4",
-    "Actor 2": "download.mp4",
+    "Original": "https://github.com/AI-ANK/bmjoanisawful/blob/main/opp.mp4",
+    "Actor 1": "https://github.com/AI-ANK/bmjoanisawful/blob/main/download.mp4",
+    "Actor 2": "https://github.com/AI-ANK/bmjoanisawful/blob/main/download.mp4",
     # Add more actors and their corresponding videos
 }
 
