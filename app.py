@@ -5,7 +5,7 @@ import requests
 ACTOR_VIDEOS = {
     "Original": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/opp.mp4",
     "Actor 1": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
-    "Actor 2": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
+    "Actor 2": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/cillout.mp4",
     # Add more actors and their corresponding videos
 }
 
