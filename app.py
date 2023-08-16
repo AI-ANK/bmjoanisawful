@@ -38,7 +38,7 @@ if st.button('View Legal Disclaimer'):
 # Title of the app
 #st.title("Choose Your Actor")
 st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
-st.markdown("Select an actor's face below and watch them transform into Michael Scott, face and voice")
+st.markdown("Choose an actor below and watch them step into the shoes of Michael Scott")
 
 
 # Display actor images for selection
