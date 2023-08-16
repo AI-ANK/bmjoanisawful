@@ -5,7 +5,7 @@ from streamlit_image_select import image_select
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
     "Original": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/opp.mp4",
+        "video_url": "https://github.com/AI-ANK/bmjoanisawful/blob/main/videos/office.mp4?raw=true",
         "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/jimmy.jpg",
     },
     "Actor 1": {
