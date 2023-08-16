@@ -4,15 +4,15 @@ import requests
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
     "Original": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/opp.mp4",
         "image_url": "url_of_original_actor_image.jpg",
     },
     "Actor 1": {
-        "video_url": "url_of_actor1_video.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
         "image_url": "url_of_actor1_image.jpg",
     },
     "Actor 2": {
-        "video_url": "url_of_actor2_video.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
         "image_url": "url_of_actor2_image.jpg",
     },
     # Add more actors and their corresponding videos and images
