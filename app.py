@@ -28,15 +28,20 @@ if st.button('View Legal Disclaimer'):
     """)
 
 # Title of the app
-st.title("Choose Your Actor V2")
+st.title("Choose Your Actor")
 
 # Default video (can be the original or any other default choice)
 selected_video_url = ACTOR_VIDEOS["Original"]["video_url"]
 
 # Display images of actors for selection
-for actor, details in ACTOR_VIDEOS.items():
-    if st.image(details["image_url"], caption=actor, width=100, use_column_width=False):
-        selected_video_url = details["video_url"]
+cols = st.beta_columns(len(ACTOR_VIDEOS))
+
+for i, (actor, details) in enumerate(ACTOR_VIDEOS.items()):
+    with cols[i]:
+        if st.button("", key=actor):
+            selected_video_url = details["video_url"]
+        st.image(details["image_url"], caption=actor, width=100, use_column_width=False)
+        st.write("")  # Spacing
 
 # Check if the video URL is valid
 response = requests.head(selected_video_url)
