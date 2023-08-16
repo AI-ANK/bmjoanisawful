@@ -35,6 +35,9 @@ if st.button('View Legal Disclaimer'):
     By accessing this demonstration, you acknowledge and agree that you understand the nature of this demonstration and that you will not use it for any unlawful or prohibited purposes. The creators of this demonstration make no representations or warranties regarding the accuracy, legality, or completeness of the content and disclaim all liability for any damages arising from the use of this demonstration.
     """)
 
+# Define actor_names before using it
+actor_names = list(ACTOR_VIDEOS.keys())
+
 # If session state doesn't have the selected_index yet, initialize it to 0 (default)
 if 'selected_index' not in st.session_state:
     st.session_state['selected_index'] = 0
@@ -50,7 +53,6 @@ else:
     st.error("Video not found. Please check the URL.")
 
 # Display actor images for selection
-actor_names = list(ACTOR_VIDEOS.keys())
 actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
 
 # Use image_select to get the index of the clicked actor's image
