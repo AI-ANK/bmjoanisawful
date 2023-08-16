@@ -1,12 +1,21 @@
 import streamlit as st
 import requests
 
-# Dictionary of actors and their corresponding video URLs
+# Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
-    "Original": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/opp.mp4",
-    "Actor 1": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
-    "Actor 2": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/cillout.mp4",
-    # Add more actors and their corresponding videos
+    "Original": {
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
+        "image_url": "url_of_original_actor_image.jpg",
+    },
+    "Actor 1": {
+        "video_url": "url_of_actor1_video.mp4",
+        "image_url": "url_of_actor1_image.jpg",
+    },
+    "Actor 2": {
+        "video_url": "url_of_actor2_video.mp4",
+        "image_url": "url_of_actor2_image.jpg",
+    },
+    # Add more actors and their corresponding videos and images
 }
 
 # Legal Disclaimer Button
@@ -21,15 +30,17 @@ if st.button('View Legal Disclaimer'):
 # Title of the app
 st.title("Choose Your Actor")
 
-# Dropdown for selecting an actor
-selected_actor = st.selectbox("Select an Actor:", options=list(ACTOR_VIDEOS.keys()))
+# Default video (can be the original or any other default choice)
+selected_video_url = ACTOR_VIDEOS["Original"]["video_url"]
 
-# Display the selected video
-video_url = ACTOR_VIDEOS[selected_actor]
+# Display images of actors for selection
+for actor, details in ACTOR_VIDEOS.items():
+    if st.image(details["image_url"], caption=actor, width=100, use_column_width=False):
+        selected_video_url = details["video_url"]
 
 # Check if the video URL is valid
-response = requests.head(video_url)
+response = requests.head(selected_video_url)
 if response.status_code == 200:
-    st.video(video_url)
+    st.video(selected_video_url)
 else:
     st.error("Video not found. Please check the URL.")
