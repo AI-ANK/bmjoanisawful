@@ -35,6 +35,12 @@ if st.button('View Legal Disclaimer'):
     By accessing this demonstration, you acknowledge and agree that you understand the nature of this demonstration and that you will not use it for any unlawful or prohibited purposes. The creators of this demonstration make no representations or warranties regarding the accuracy, legality, or completeness of the content and disclaim all liability for any damages arising from the use of this demonstration.
     """)
 
+# Title of the app
+#st.title("Choose Your Actor")
+st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
+st.markdown("Select an actor's face below and watch them transform into Michael Scott")
+
+
 # Define actor_names before using it
 actor_names = list(ACTOR_VIDEOS.keys())
 
