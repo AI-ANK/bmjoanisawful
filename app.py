@@ -58,6 +58,6 @@ selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
 response = requests.head(selected_video_url)
 if response.status_code == 200:
     #st.video(selected_video_url)
-    st.markdown(f'<video width="100%" controls autoplay src="{video_url}"></video>', unsafe_allow_html=True)
+    st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
 else:
     st.error("Video not found. Please check the URL.")
