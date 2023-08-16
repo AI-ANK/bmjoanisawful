@@ -40,15 +40,6 @@ if st.button('View Legal Disclaimer'):
 st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
 st.markdown("Select an actor's face below and watch them transform into Michael Scott")
 
-# Initially set the selected video to a default (e.g., "Original")
-selected_video_url = ACTOR_VIDEOS["Original"]["video_url"]
-
-# Check if the video URL is valid
-response = requests.head(selected_video_url)
-if response.status_code == 200:
-    st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
-else:
-    st.error("Video not found. Please check the URL.")
 
 # Display actor images for selection
 actor_names = list(ACTOR_VIDEOS.keys())
@@ -63,5 +54,13 @@ selected_index = image_select(
     use_container_width=0,
 )
 
-# Update the selected video based on the selected actor
+# Use the selected index to get the video URL
 selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
+
+# Check if the video URL is valid
+response = requests.head(selected_video_url)
+if response.status_code == 200:
+    #st.video(selected_video_url)
+    st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
+else:
+    st.error("Video not found. Please check the URL.")
