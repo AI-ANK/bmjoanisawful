@@ -28,7 +28,7 @@ if st.button('View Legal Disclaimer'):
     """)
 
 # Title of the app
-st.title("Choose Your Actor")
+st.title("Choose Your Actor V2")
 
 # Default video (can be the original or any other default choice)
 selected_video_url = ACTOR_VIDEOS["Original"]["video_url"]
