@@ -5,23 +5,23 @@ from streamlit_image_select import image_select
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
     "Original": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/videos/office.mp4",
         "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/obama.jpg",
     },
     "John Cena": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/1jc.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/videos/1jc.mp4",
         "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1jc.jpg",
     },
     "Joaquin Phoenix": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/1jp.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/videos/1jp.mp4",
         "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1jp.jpg",
     },
     "Mr Beast": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/1mrb.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/videos/1mrb.mp4",
         "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1mrb.jpg",
     },
     "Bob Odenkirk": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/1sg.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/videos/1sg.mp4",
         "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1sg.jpg",
     },
 }
