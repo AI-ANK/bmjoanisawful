@@ -5,18 +5,25 @@ from streamlit_image_select import image_select
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
     "Original": {
-        "video_url": "https://github.com/AI-ANK/bmjoanisawful/blob/main/videos/office.mp4?raw=true",
-        "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/jimmy.jpg",
-    },
-    "Actor 1": {
         "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
-        "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/john.jpg",
+        "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/obama.jpg",
     },
-    "Actor 2": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
-        "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/joaquin.jpg",
+    "John Cena": {
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/1jc.mp4",
+        "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1jc.jpg",
     },
-    # Add more actors and their corresponding videos and images
+    "Joaquin Phoenix": {
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/1jp.mp4",
+        "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1jp.jpg",
+    },
+    "Mr Beast": {
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/1mrb.mp4",
+        "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1mrb.jpg",
+    },
+    "Bob Odenkirk": {
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/1sg.mp4",
+        "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1sg.jpg",
+    },
 }
 
 # Legal Disclaimer Button
