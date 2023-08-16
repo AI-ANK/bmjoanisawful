@@ -35,29 +35,35 @@ if st.button('View Legal Disclaimer'):
     By accessing this demonstration, you acknowledge and agree that you understand the nature of this demonstration and that you will not use it for any unlawful or prohibited purposes. The creators of this demonstration make no representations or warranties regarding the accuracy, legality, or completeness of the content and disclaim all liability for any damages arising from the use of this demonstration.
     """)
 
-# Title of the app
+# Determine screen width to adjust layout
+screen_width = st.session_state.get("screen_width", 0)
+if not screen_width:
+    st.write("<script>window.onload = function() { var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); parent.parent.postMessage({'screen_width': w}, '*'); }</script>", unsafe_allow_html=True)
+    st.stop()
+else:
+    st.session_state.screen_width = 0  # Reset for next load
+
 st.title("Choose Your Actor")
+
+# Placeholder for the video
+video_placeholder = st.empty()
 
 # Display actor images for selection
 actor_names = list(ACTOR_VIDEOS.keys())
 actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
 
-selected_index = image_select(
-    "",
-    images=actor_images,
-    captions=actor_names,
-    index=0,
-    return_value="index",
-    use_container_width=0,
-)
+# Adjust layout based on screen width
+if screen_width > 480:  # Desktop or large tablet
+    cols = st.beta_columns(len(actor_names))
+else:  # Mobile or small screen
+    cols = st.beta_columns([1] * min(len(actor_names), 3))  # 3 images per row
 
-# Use the selected index to get the video URL
-selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
+selected_actor = None
+for i, actor in enumerate(actor_names):
+    if cols[i % len(cols)].image(actor_images[i], caption=actor, use_column_width=True, width=None if screen_width <= 480 else 100):
+        selected_actor = actor
 
-# Check if the video URL is valid
-response = requests.head(selected_video_url)
-if response.status_code == 200:
-    #st.video(selected_video_url)
-    st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
-else:
-    st.error("Video not found. Please check the URL.")
+# If an actor is selected, play the video
+if selected_actor:
+    video_url = ACTOR_VIDEOS[selected_actor]['video_url']
+    video_placeholder.markdown(f'<video width="100%" controls autoplay src="{video_url}"></video>', unsafe_allow_html=True)
