@@ -5,22 +5,22 @@ import requests
 ACTOR_VIDEOS = {
     "Original": {
         "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/opp.mp4",
-        "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/john.jpg",
+        "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/jimmy.jpg",
     },
     "Actor 1": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/opp.mp4",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
         "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/john.jpg",
     },
     "Actor 2": {
-        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/opp.mp4",
-        "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/john.jpg",
+        "video_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/download.mp4",
+        "image_url": "https://github.com/AI-ANK/bmjoanisawful/raw/cf49344156010790d3a3ca56f66c1ee5de7060a4/images/joaquin.jpg",
     },
-    # Add more actors and their corresponding videos and images
 }
 
 # Legal Disclaimer Button
 if st.button('View Legal Disclaimer'):
     st.warning("""
+    **Legal Disclaimer**
     **Legal Disclaimer**
     This demonstration is intended solely for educational and learning purposes. The videos, images, and other content used in this demonstration are the intellectual property of their respective owners. This demonstration does not claim any ownership over these materials and is not intended for commercial use.
     The use of copyrighted material in this demonstration is believed to fall under the "fair use" doctrine, as it is used for educational purposes, is non-commercial in nature, and does not materially affect the potential market for or value of the copyrighted work. Nevertheless, if you are a copyright holder and believe that any content used in this demonstration infringes upon your rights, please contact us at [your contact information here], and we will promptly address your concerns.
@@ -34,16 +34,14 @@ st.title("Choose Your Actor")
 selected_video_url = ACTOR_VIDEOS["Original"]["video_url"]
 
 # Display images of actors for selection
-cols = st.beta_columns(len(ACTOR_VIDEOS))
+cols = st.columns(len(ACTOR_VIDEOS))
 
-for i, (actor, details) in enumerate(ACTOR_VIDEOS.items()):
-    with cols[i]:
-        if st.button("", key=actor):
+for actor, details in ACTOR_VIDEOS.items():
+    with cols[list(ACTOR_VIDEOS.keys()).index(actor)]:
+        if st.image(details["image_url"], caption=actor, width=100, use_column_width=False, output_format="PNG", channels="RGB", clamp=True):
             selected_video_url = details["video_url"]
-        st.image(details["image_url"], caption=actor, width=100, use_column_width=False)
-        st.write("")  # Spacing
 
-# Check if the video URL is valid
+# Display the selected video
 response = requests.head(selected_video_url)
 if response.status_code == 200:
     st.video(selected_video_url)
