@@ -46,7 +46,7 @@ st.markdown("Choose an actor below and watch them step into the shoes of Michael
 actor_names = list(ACTOR_VIDEOS.keys())
 actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
 
-selected_actor_index = streamlit_imagegrid.image_grid(actor_images, 1, 3)  # Display in 1 row and 3 columns
+selected_actor_index = streamlit_imagegrid(actor_images, 1, 3)  # Display in 1 row and 3 columns
 
 # Use the selected actor index to get the video URL
 selected_actor = actor_names[selected_actor_index]
