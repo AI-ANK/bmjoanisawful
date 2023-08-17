@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from streamlit_imagegrid import streamlit_imagegrid
+from streamlit_image_select import image_select
 
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
@@ -46,15 +46,22 @@ st.markdown("Choose an actor below and watch them step into the shoes of Michael
 actor_names = list(ACTOR_VIDEOS.keys())
 actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
 
-selected_actor_index = streamlit_imagegrid(actor_images, 1, 3)  # Display in 1 row and 3 columns
+selected_index = image_select(
+    "",
+    images=actor_images,
+    captions=actor_names,
+    index=0,
+    return_value="index",
+    use_container_width=0,
+)
 
-# Use the selected actor index to get the video URL
-selected_actor = actor_names[selected_actor_index]
-selected_video_url = ACTOR_VIDEOS[selected_actor]["video_url"]
+# Use the selected index to get the video URL
+selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
 
 # Check if the video URL is valid
 response = requests.head(selected_video_url)
 if response.status_code == 200:
+    #st.video(selected_video_url)
     st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
 else:
     st.error("Video not found. Please check the URL.")
