@@ -54,7 +54,7 @@ columns = st.columns(len(ACTOR_VIDEOS))
 selected_actor = None
 for idx, (actor, details) in enumerate(ACTOR_VIDEOS.items()):
     with columns[idx]:
-        if st.image(details["image_url"], caption=actor, use_column_width=True, width=100):
+        if st.button("", image=details["image_url"]):
             selected_actor = actor
 
 # If an actor's image is clicked, update the video URL
