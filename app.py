@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 from streamlit_image_select import image_select
 
-
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
     "Original": {
