@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from streamlit_image_select import image_select
+from streamlit_imagegrid import imagegrid
 
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
@@ -52,7 +52,6 @@ selected_index = image_select(
     captions=actor_names,
     index=0,
     return_value="index",
-    use_container_width=0,
 )
 
 # Use the selected index to get the video URL
@@ -61,7 +60,6 @@ selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
 # Check if the video URL is valid
 response = requests.head(selected_video_url)
 if response.status_code == 200:
-    #st.video(selected_video_url)
     st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
 else:
     st.error("Video not found. Please check the URL.")
