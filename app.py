@@ -26,6 +26,9 @@ ACTOR_VIDEOS = {
     },
 }
 
+# Define actor_names right after ACTOR_VIDEOS
+actor_names = list(ACTOR_VIDEOS.keys())
+
 # Legal Disclaimer Button
 if st.button('View Legal Disclaimer'):
     st.warning("""
