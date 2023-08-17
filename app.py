@@ -36,31 +36,27 @@ if st.button('View Legal Disclaimer'):
     """)
 
 # Title of the app
-#st.title("Choose Your Actor")
 st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
 st.markdown("Choose an actor below and watch them step into the shoes of Michael Scott")
 
-
-# Display actor images for selection
-actor_names = list(ACTOR_VIDEOS.keys())
-actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
-
-selected_index = image_select(
-    "",
-    images=actor_images,
-    captions=actor_names,
-    index=0,
-    return_value="index",
-    use_container_width=0,
-)
-
 # Use the selected index to get the video URL
-selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
+selected_actor = "Original"  # Default
+if 'selected_actor' in st.session_state:
+    selected_actor = st.session_state['selected_actor']
+
+actor_columns = st.columns(len(ACTOR_VIDEOS))
+
+for actor_name, details in ACTOR_VIDEOS.items():
+    with actor_columns[actor_names.index(actor_name)]:
+        if st.image(details["image_url"], width=100, use_column_width=False, caption=actor_name, output_format="PNG"):
+            st.session_state['selected_actor'] = actor_name
+            selected_actor = actor_name
+
+selected_video_url = ACTOR_VIDEOS[selected_actor]["video_url"]
 
 # Check if the video URL is valid
 response = requests.head(selected_video_url)
 if response.status_code == 200:
-    #st.video(selected_video_url)
     st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
 else:
     st.error("Video not found. Please check the URL.")
