@@ -48,37 +48,20 @@ if st.button('View Legal Disclaimer'):
     By accessing this demonstration, you acknowledge and agree that you understand the nature of this demonstration and that you will not use it for any unlawful or prohibited purposes. The creators of this demonstration make no representations or warranties regarding the accuracy, legality, or completeness of the content and disclaim all liability for any damages arising from the use of this demonstration.
     """)
 
-# Title of the app
-st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
-st.markdown("Choose an actor below and watch them step into the shoes of Michael Scott")
+# Create columns for each actor image
+columns = st.beta_columns(len(ACTOR_VIDEOS))
 
-# Resize images and save them temporarily
-def fetch_and_resize_image(url, filename, size=(75, 75)):
-    response = requests.get(url)
-    img = Image.open(io.BytesIO(response.content))
-    img_resized = img.resize(size)
-    img_resized_path = f"./temp_{filename}.png"
-    img_resized.save(img_resized_path)
-    return img_resized_path
+selected_actor = None
+for idx, (actor, details) in enumerate(ACTOR_VIDEOS.items()):
+    with columns[idx]:
+        if st.image(details["image_url"], caption=actor, use_column_width=True, width=100):
+            selected_actor = actor
 
-actor_names = list(ACTOR_VIDEOS.keys())
-resized_actor_image_paths = [fetch_and_resize_image(ACTOR_VIDEOS[actor]['image_url'], actor) for actor in actor_names]
-
-selected_index = image_select(
-    "",
-    images=resized_actor_image_paths,
-    captions=actor_names,
-    index=0,
-    return_value="index",
-    use_container_width=False
-)
-
-# Clean up temporary images
-for img_path in resized_actor_image_paths:
-    os.remove(img_path)
-
-# Use the selected index to get the video URL
-selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
+# If an actor's image is clicked, update the video URL
+if selected_actor:
+    selected_video_url = ACTOR_VIDEOS[selected_actor]["video_url"]
+else:  # Default to "Original" if no actor is selected yet
+    selected_video_url = ACTOR_VIDEOS["Original"]["video_url"]
 
 # Check if the video URL is valid
 response = requests.head(selected_video_url)
