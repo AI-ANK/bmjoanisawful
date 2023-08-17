@@ -6,10 +6,20 @@ import io
 import os
 
 st.markdown(
-    """
-    <meta name="viewport" content="width=1024">
-    """,
-    unsafe_allow_html=True
+    '''
+    <style>
+        .imageSelect img {
+            display: inline-block !important;
+            width: auto !important;
+            max-width: 100%;
+        }
+        .imageSelect {
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+    </style>
+    ''',
+    unsafe_allow_html=True,
 )
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
