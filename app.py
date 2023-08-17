@@ -3,6 +3,8 @@ import requests
 from streamlit_image_select import image_select
 from PIL import Image
 import io
+import os
+
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
@@ -44,26 +46,30 @@ if st.button('View Legal Disclaimer'):
 st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
 st.markdown("Choose an actor below and watch them step into the shoes of Michael Scott")
 
-# Resize images and store them in memory
-def fetch_and_resize_image(url, size=(150, 150)):
+# Resize images and save them temporarily
+def fetch_and_resize_image(url, filename, size=(150, 150)):
     response = requests.get(url)
     img = Image.open(io.BytesIO(response.content))
     img_resized = img.resize(size)
-    img_byte_arr = io.BytesIO()
-    img_resized.save(img_byte_arr, format='PNG')
-    return img_byte_arr.getvalue()
+    img_resized_path = f"./temp_{filename}.png"
+    img_resized.save(img_resized_path)
+    return img_resized_path
 
 actor_names = list(ACTOR_VIDEOS.keys())
-resized_actor_images = [fetch_and_resize_image(ACTOR_VIDEOS[actor]['image_url']) for actor in actor_names]
+resized_actor_image_paths = [fetch_and_resize_image(ACTOR_VIDEOS[actor]['image_url'], actor) for actor in actor_names]
 
 selected_index = image_select(
     "",
-    images=resized_actor_images,
+    images=resized_actor_image_paths,
     captions=actor_names,
     index=0,
     return_value="index",
     use_container_width=False
 )
+
+# Clean up temporary images
+for img_path in resized_actor_image_paths:
+    os.remove(img_path)
 
 # Use the selected index to get the video URL
 selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
