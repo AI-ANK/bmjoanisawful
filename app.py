@@ -49,7 +49,7 @@ if st.button('View Legal Disclaimer'):
     """)
 
 # Create columns for each actor image
-columns = st.beta_columns(len(ACTOR_VIDEOS))
+columns = st.columns(len(ACTOR_VIDEOS))
 
 selected_actor = None
 for idx, (actor, details) in enumerate(ACTOR_VIDEOS.items()):
