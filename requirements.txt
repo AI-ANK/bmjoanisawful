@@ -1,4 +1,4 @@
 streamlit
 requests
 streamlit-image-select
-streamlit_analytics
+streamlit-analytics
