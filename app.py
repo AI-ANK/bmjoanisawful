@@ -5,6 +5,12 @@ from PIL import Image
 import io
 import os
 
+st.markdown(
+    """
+    <meta name="viewport" content="width=1024">
+    """,
+    unsafe_allow_html=True
+)
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
