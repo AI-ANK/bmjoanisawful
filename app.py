@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from streamlit_imagegrid import imagegrid
+from streamlit_imagegrid import streamlit_imagegrid
 
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
