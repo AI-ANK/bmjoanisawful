@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 from streamlit_image_select import image_select
 
-# Add the custom CSS to force desktop view on mobile
 st.markdown("""
     <style>
         @media (max-width: 768px) {
@@ -14,6 +13,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
