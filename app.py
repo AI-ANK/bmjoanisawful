@@ -2,31 +2,6 @@ import streamlit as st
 import requests
 from streamlit_image_select import image_select
 
-# JavaScript to detect screen width and store in Streamlit session state
-js_code = """
-<script>
-    function setScreenWidth() {
-        let w = window.innerWidth;
-        let h = window.innerHeight;
-        let body = document.body;
-        let html = document.documentElement;
-        w = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
-        h = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-        const state = { screenWidth: w, screenHeight: h };
-        document.dispatchEvent(new CustomEvent("SET_STATE", { detail: state }));
-    }
-    setScreenWidth();
-</script>
-"""
-
-# Embed JavaScript in Streamlit app
-st.markdown(js_code, unsafe_allow_html=True)
-
-# If screenWidth is available and below threshold, show popup
-if "screenWidth" in st.session_state and st.session_state.screenWidth < 768:
-    st.warning("For the best experience, please open this app in desktop mode on your browser.")
-
-
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
     "Original": {
