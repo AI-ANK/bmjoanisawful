@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 from streamlit_image_select import image_select
+from PIL import Image
+import io
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
@@ -42,20 +44,29 @@ if st.button('View Legal Disclaimer'):
 st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
 st.markdown("Choose an actor below and watch them step into the shoes of Michael Scott")
 
+# Resize images and store them in memory
+def fetch_and_resize_image(url, size=(150, 150)):
+    response = requests.get(url)
+    img = Image.open(io.BytesIO(response.content))
+    img_resized = img.resize(size)
+    img_byte_arr = io.BytesIO()
+    img_resized.save(img_byte_arr, format='PNG')
+    return img_byte_arr.getvalue()
+
+actor_names = list(ACTOR_VIDEOS.keys())
+resized_actor_images = [fetch_and_resize_image(ACTOR_VIDEOS[actor]['image_url']) for actor in actor_names]
+
+selected_index = image_select(
+    "",
+    images=resized_actor_images,
+    captions=actor_names,
+    index=0,
+    return_value="index",
+    use_container_width=False
+)
+
 # Use the selected index to get the video URL
-selected_actor = "Original"  # Default
-if 'selected_actor' in st.session_state:
-    selected_actor = st.session_state['selected_actor']
-
-actor_columns = st.columns(len(ACTOR_VIDEOS))
-
-for actor_name, details in ACTOR_VIDEOS.items():
-    with actor_columns[actor_names.index(actor_name)]:
-        if st.image(details["image_url"], width=100, use_column_width=False, caption=actor_name, output_format="PNG"):
-            st.session_state['selected_actor'] = actor_name
-            selected_actor = actor_name
-
-selected_video_url = ACTOR_VIDEOS[selected_actor]["video_url"]
+selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
 
 # Check if the video URL is valid
 response = requests.head(selected_video_url)
