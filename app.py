@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
 from streamlit_image_select import image_select
-import streamlit_analytics
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
@@ -26,8 +25,6 @@ ACTOR_VIDEOS = {
         "image_url": "https://cdn.jsdelivr.net/gh/AI-ANK/bmjoanisawful@main/images/1sg.jpg",
     },
 }
-
-streamlit_analytics.start_tracking()
 
 
 # Legal Disclaimer Button
@@ -68,5 +65,3 @@ if response.status_code == 200:
     st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
 else:
     st.error("Video not found. Please check the URL.")
-
-streamlit_analytics.stop_tracking()
