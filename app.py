@@ -51,7 +51,6 @@ selected_index = image_select(
     images=actor_images,
     captions=actor_names,
     index=0,
-    width=20,
     return_value="index",
     use_container_width=0,
 )
