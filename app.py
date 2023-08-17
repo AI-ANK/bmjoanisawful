@@ -26,15 +26,6 @@ ACTOR_VIDEOS = {
     },
 }
 
-# Apply custom styles
-st.markdown("""
-    <style>
-        /* Change color of image captions */
-        .caption { color: white; }
-    </style>
-""", unsafe_allow_html=True)
-
-
 # Legal Disclaimer Button
 if st.button('View Legal Disclaimer'):
     st.warning("""
@@ -53,14 +44,23 @@ st.markdown("Choose an actor below and watch them step into the shoes of Michael
 # Display actor images for selection
 actor_names = list(ACTOR_VIDEOS.keys())
 actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
-cols = st.columns(5)  # Create 5 columns for 5 actors
 
-selected_actor = None
-for i, actor in enumerate(actor_names):
-    if cols[i].image(actor_images[i], caption=actor, use_column_width=True, width=100):
-        selected_actor = actor
+selected_index = image_select(
+    "",
+    images=actor_images,
+    captions=actor_names,
+    index=0,
+    return_value="index",
+    use_container_width=0,
+)
 
-# If an actor is selected, play the video
-if selected_actor:
-    video_url = ACTOR_VIDEOS[selected_actor]['video_url']
-    st.markdown(f'<video width="100%" controls autoplay src="{video_url}"></video>', unsafe_allow_html=True)
+# Use the selected index to get the video URL
+selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
+
+# Check if the video URL is valid
+response = requests.head(selected_video_url)
+if response.status_code == 200:
+    #st.video(selected_video_url)
+    st.markdown(f'<video width="100%" controls autoplay src="{selected_video_url}"></video>', unsafe_allow_html=True)
+else:
+    st.error("Video not found. Please check the URL.")
