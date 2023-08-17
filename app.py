@@ -47,7 +47,7 @@ st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
 st.markdown("Choose an actor below and watch them step into the shoes of Michael Scott")
 
 # Resize images and save them temporarily
-def fetch_and_resize_image(url, filename, size=(150, 150)):
+def fetch_and_resize_image(url, filename, size=(75, 75)):
     response = requests.get(url)
     img = Image.open(io.BytesIO(response.content))
     img_resized = img.resize(size)
