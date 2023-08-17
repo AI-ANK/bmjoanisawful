@@ -2,6 +2,24 @@ import streamlit as st
 import requests
 from streamlit_image_select import image_select
 
+st.markdown(
+    '''
+    <style>
+        .imageSelect img {
+            display: inline-block !important;
+            width: auto !important;
+            max-width: 100%;
+        }
+        .imageSelect {
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+    </style>
+    ''',
+    unsafe_allow_html=True,
+)
+
+
 # Dictionary of actors, their corresponding video URLs, and image URLs
 ACTOR_VIDEOS = {
     "Original": {
