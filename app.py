@@ -53,7 +53,7 @@ st.markdown("Choose an actor below and watch them step into the shoes of Michael
 # Display actor images for selection
 actor_names = list(ACTOR_VIDEOS.keys())
 actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
-cols = st.beta_columns(5)  # Create 5 columns for 5 actors
+cols = st.columns(5)  # Create 5 columns for 5 actors
 
 selected_actor = None
 for i, actor in enumerate(actor_names):
