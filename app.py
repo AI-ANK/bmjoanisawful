@@ -52,7 +52,7 @@ selected_index = image_select(
     captions=actor_names,
     index=0,
     return_value="index",
-    use_container_width=0,
+    use_container_width=1,
 )
 
 # Use the selected index to get the video URL
