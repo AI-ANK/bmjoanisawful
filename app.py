@@ -3,6 +3,7 @@ import requests
 from streamlit_image_select import image_select
 from PIL import Image
 import io
+import base64
 
 
 # Dictionary of actors, their corresponding video URLs, and image URLs
@@ -29,15 +30,21 @@ ACTOR_VIDEOS = {
     },
 }
 
-# Resize images to a desired size
+
+# Resize images to a desired size and return as Data URI
 def resize_image(image_url, size=(100, 100)):
     response = requests.get(image_url)
     image = Image.open(io.BytesIO(response.content))
     image = image.resize(size)
+    
     img_byte_arr = io.BytesIO()
     image.save(img_byte_arr, format='PNG')
     img_byte_arr = img_byte_arr.getvalue()
-    return img_byte_arr
+    
+    # Convert byte array to Data URI
+    data_uri = "data:image/png;base64," + base64.b64encode(img_byte_arr).decode('utf-8')
+    
+    return data_uri
 
 
 # Legal Disclaimer Button
