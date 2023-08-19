@@ -32,7 +32,7 @@ ACTOR_VIDEOS = {
 
 
 # Resize images to a desired size and return as Data URI
-def resize_image(image_url, size=(100, 100)):
+def resize_image(image_url, size=(70, 70)):
     response = requests.get(image_url)
     image = Image.open(io.BytesIO(response.content))
     image = image.resize(size)
