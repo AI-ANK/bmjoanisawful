@@ -26,6 +26,9 @@ ACTOR_VIDEOS = {
     },
 }
 
+# Set a default video URL (for example, the original video)
+selected_video_url = ACTOR_VIDEOS["Original"]["video_url"]
+
 # Legal Disclaimer Button
 if st.button('View Legal Disclaimer'):
     st.warning("""
