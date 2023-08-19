@@ -41,21 +41,21 @@ st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
 st.markdown("Choose an actor below and watch them step into the shoes of Michael Scott")
 
 
-# Display actor images for selection
+# Display actor images for selection using a grid
 actor_names = list(ACTOR_VIDEOS.keys())
-actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
+num_actors = len(actor_names)
+cols = st.columns(num_actors)
 
-selected_index = image_select(
-    "",
-    images=actor_images,
-    captions=actor_names,
-    index=0,
-    return_value="index",
-    use_container_width=0,
-)
+selected_actor = None
+for i, actor in enumerate(actor_names):
+    image_url = ACTOR_VIDEOS[actor]['image_url']
+    if cols[i].button("", key=actor):
+        selected_actor = actor
+    cols[i].image(image_url, caption=actor, use_column_width=True)
 
-# Use the selected index to get the video URL
-selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
+# If an actor is selected, update the video URL
+if selected_actor:
+    selected_video_url = ACTOR_VIDEOS[selected_actor]["video_url"]
 
 # Check if the video URL is valid
 response = requests.head(selected_video_url)
