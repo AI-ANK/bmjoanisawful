@@ -47,14 +47,17 @@ st.markdown("Choose an actor below and watch them step into the shoes of Michael
 # Display actor images for selection using a grid
 actor_names = list(ACTOR_VIDEOS.keys())
 num_actors = len(actor_names)
-cols = st.columns(num_actors)
 
-selected_actor = None
+# Adjust the number of columns based on how many actor images you have. 
+# For simplicity, we'll split the images into two columns.
+cols = st.columns(2) 
+
 for i, actor in enumerate(actor_names):
     image_url = ACTOR_VIDEOS[actor]['image_url']
-    if cols[i].button("", key=actor):
-        selected_actor = actor
-    cols[i].image(image_url, caption=actor, use_column_width=True)
+    if cols[i % 2].button("", key=actor):  # Use modulo to cycle between the two columns
+        selected_video_url = ACTOR_VIDEOS[actor]["video_url"]
+    cols[i % 2].image(image_url, caption=actor, width=150)  # Adjust width as per your requirement
+
 
 # If an actor is selected, update the video URL
 if selected_actor:
