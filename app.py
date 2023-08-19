@@ -26,9 +26,6 @@ ACTOR_VIDEOS = {
     },
 }
 
-# Set a default video URL (for example, the original video)
-selected_video_url = ACTOR_VIDEOS["Original"]["video_url"]
-
 # Legal Disclaimer Button
 if st.button('View Legal Disclaimer'):
     st.warning("""
@@ -44,24 +41,21 @@ st.title("Black Mirror Meets The Office: Michael Scott Is Awful")
 st.markdown("Choose an actor below and watch them step into the shoes of Michael Scott")
 
 
-# Display actor images for selection using a grid
+# Display actor images for selection
 actor_names = list(ACTOR_VIDEOS.keys())
-num_actors = len(actor_names)
+actor_images = [ACTOR_VIDEOS[actor]['image_url'] for actor in actor_names]
 
-# Adjust the number of columns based on how many actor images you have. 
-# For simplicity, we'll split the images into two columns.
-cols = st.columns(2) 
+selected_index = image_select(
+    "",
+    images=actor_images,
+    captions=actor_names,
+    index=0,
+    return_value="index",
+    use_container_width=0,
+)
 
-for i, actor in enumerate(actor_names):
-    image_url = ACTOR_VIDEOS[actor]['image_url']
-    if cols[i % 2].button("", key=actor):  # Use modulo to cycle between the two columns
-        selected_video_url = ACTOR_VIDEOS[actor]["video_url"]
-    cols[i % 2].image(image_url, caption=actor, width=150)  # Adjust width as per your requirement
-
-
-# If an actor is selected, update the video URL
-if selected_actor:
-    selected_video_url = ACTOR_VIDEOS[selected_actor]["video_url"]
+# Use the selected index to get the video URL
+selected_video_url = ACTOR_VIDEOS[actor_names[selected_index]]["video_url"]
 
 # Check if the video URL is valid
 response = requests.head(selected_video_url)
